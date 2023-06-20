@@ -7,46 +7,45 @@ import java.util.StringTokenizer;
 
 public class Main {
     static boolean[] isvisited;
-    static LinkedList<Integer>[] arr;
+
+    static int N;
+    static boolean[][] arr;
+
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
 
-        int N = Integer.parseInt(st.nextToken());
+        N = Integer.parseInt(st.nextToken());
         int M = Integer.parseInt(st.nextToken());
         int result = 0;
 
-        arr = new LinkedList[N+1];
-
-        isvisited = new boolean[N+1];
-
-        for (int i = 0; i <= N; i++) {
-            arr[i] = new LinkedList<>();
-        }
+        arr = new boolean[N + 1][N + 1];
+        isvisited = new boolean[N + 1];
 
         for (int i = 0; i < M; i++) {
             st = new StringTokenizer(br.readLine());
             int a = Integer.parseInt(st.nextToken());
             int b = Integer.parseInt(st.nextToken());
 
-            arr[a].add(b);
-            arr[b].add(a);
+            arr[a][b] = arr[b][a] = true;
         }
 
         for (int i = 1; i <= N; i++) {
-            if(isvisited[i]) continue;
+            if (isvisited[i]) continue;
             fun(i);
             result++;
         }
-
+ 
         System.out.println(result);
     }
 
-    static void fun(int i){
-        while(!arr[i].isEmpty()){
-            int num = arr[i].poll();
-            isvisited[num] = true;
-            fun(num);
+    static void fun(int i) {
+        for (int j = 1; j <= N; j++) {
+            if (arr[i][j]) {
+                if (isvisited[j]) continue;
+                isvisited[j] = true;
+                fun(j);
+            }
         }
     }
 }

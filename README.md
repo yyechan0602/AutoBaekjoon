@@ -6,4 +6,4 @@
 
 풀이 별 자세한 해설은 제 블로그 <https://yyechan0602.github.io/> 를 참고해주시면 감사하겠습니다.😉
 
-- [백준 온라인](https://www.acmicpc.net/) 
+- [BaekJoon](https://www.acmicpc.net/)
